@@ -4,6 +4,8 @@ import { type BinaryNode } from '../WABinary/index.js';
 import { BinaryInfo } from '../WAM/BinaryInfo.js';
 import { USyncQuery } from '../WAUSync/index.js';
 import { WebSocketClient } from './Client/index.js';
+import { NewsletterMetadata } from './newsletter.js';
+import { ButtonsContent, InteractiveContent, ListContent, CarouselContent } from './messages-send.js';
 /**
  * Connects to WA servers and performs:
  * - simple queries (no retry mechanism, wait for connection establishment)
@@ -47,5 +49,28 @@ export declare const makeSocket: (config: SocketConfig) => {
         jid: string;
         exists: boolean;
     }[] | undefined>;
+     newsletterFollow: (jid: string) => Promise<any>;
+    newsletterUnfollow: (jid: string) => Promise<any>;
+    newsletterMetadata: (type: 'invite' | 'direct', key: string, role?: string) => Promise<NewsletterMetadata>;
+    newsletterCreate: (name: string, description?: string, picture?: Buffer) => Promise<any>;
+    newsletterDelete: (jid: string) => Promise<any>;
+    newsletterReactMessage: (jid: string, serverId: string, emoji: string) => Promise<any>;
+    newsletterMute: (jid: string) => Promise<any>;
+    newsletterUnmute: (jid: string) => Promise<any>;
+    newsletterAction: (jid: string, action: 'mute' | 'unmute' | 'follow' | 'unfollow') => Promise<any>;
+    newsletterUpdateName: (jid: string, name: string) => Promise<any>;
+    newsletterUpdateDescription: (jid: string, description: string) => Promise<any>;
+    newsletterUpdatePicture: (jid: string, content: Buffer) => Promise<any>;
+    newsletterRemovePicture: (jid: string) => Promise<any>;
+    newsletterFetchMessages: (type: 'invite' | 'direct', key: string, count?: number, after?: number) => Promise<any>;
+    newsletterFetchUpdates: (jid: string, count?: number, after?: number, since?: number) => Promise<any>;
+    newsletterReactionMode: (jid: string, mode: 'all' | 'basic' | 'none' | 'blocklist') => Promise<any>;
+    newsletterAdminCount: (jid: string) => Promise<any>;
+    
+    // Buttons
+    sendButtonsMessage: (jid: string, content: ButtonsContent, options?: any) => Promise<any>;
+    sendInteractiveMessage: (jid: string, content: InteractiveContent, options?: any) => Promise<any>;
+    sendListMessage: (jid: string, content: ListContent, options?: any) => Promise<any>;
+    sendCarouselMessage: (jid: string, content: CarouselContent, options?: any) => Promise<any>;
 };
 //# sourceMappingURL=socket.d.ts.map
