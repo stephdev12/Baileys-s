@@ -165,5 +165,81 @@ export declare const makeMessagesSocket: (config: SocketConfig) => {
         jid: string;
         exists: boolean;
     }[] | undefined>;
+    export interface ButtonsContent {
+    text: string;
+    footer?: string;
+    buttons: Array<{
+        buttonId: string;
+        buttonText: { displayText: string };
+        type: number;
+        nativeFlowInfo?: {
+            name: string;
+            paramsJson: string;
+        };
+    }>;
+    headerType?: number;
+    image?: any;
+    video?: any;
+}
+
+export interface InteractiveContent {
+    body: string;
+    footer?: string;
+    title?: string;
+    subtitle?: string;
+    buttons: Array<{
+        name: string;
+        buttonParamsJson: string;
+    }>;
+    image?: any;
+    video?: any;
+}
+
+export interface ListContent {
+    text: string;
+    title: string;
+    footer?: string;
+    buttonText: string;
+    sections: Array<{
+        title: string;
+        rows: Array<{
+            title: string;
+            rowId: string;
+            description?: string;
+        }>;
+    }>;
+}
+
+export interface CarouselContent {
+    text: string;
+    footer?: string;
+    cards: Array<{
+        title: string;
+        image: any;
+        caption: string;
+    }>;
+}
+
+export declare function sendButtonsMessage(
+    jid: string,
+    content: ButtonsContent,
+    options?: any
+): any;
+
+export declare function sendInteractiveMessage(
+    jid: string,
+    content: InteractiveContent
+): Promise<any>;
+
+export declare function sendListMessage(
+    jid: string,
+    content: ListContent
+): any;
+
+export declare function sendCarouselMessage(
+    jid: string,
+    content: CarouselContent
+): any;
 };
+
 //# sourceMappingURL=messages-send.d.ts.map
