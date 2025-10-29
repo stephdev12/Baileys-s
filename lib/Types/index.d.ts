@@ -13,6 +13,17 @@ export * from './Newsletter.js';
 export type { Button, TemplateButton, ButtonsMessage, TemplateMessage, ListMessage, } from './Message.js';
 import type { AuthenticationState } from './Auth.js';
 import type { SocketConfig } from './Socket.js';
+export { makeNewsletterSocket, NewsletterMetadata } from './Socket/newsletter.js';
+export { 
+    sendButtonsMessage, 
+    sendInteractiveMessage,
+    sendListMessage,
+    sendCarouselMessage,
+    ButtonsContent, 
+    InteractiveContent,
+    ListContent,
+    CarouselContent
+} from './Socket/messages-send.js';
 export type UserFacingSocketConfig = Partial<SocketConfig> & {
     auth: AuthenticationState;
 };
